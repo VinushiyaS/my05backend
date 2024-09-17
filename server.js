@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors'); // Import the cors package
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const tournamentRoutes = require('./routes/tournament');
@@ -14,6 +15,12 @@ connectDB();
 
 // Middleware
 app.use(express.json());
+app.use(cors()); // Apply the CORS middleware
+
+// OR configure CORS options if needed
+// app.use(cors({
+//   origin: 'http://localhost:3000' // Allow only specific origin
+// }));
 
 // Routes
 app.use('/api/auth', authRoutes);

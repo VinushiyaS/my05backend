@@ -7,9 +7,9 @@ const nodemailer = require('nodemailer'); // For sending emails
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret'; // Replace with your actual secret
 // Signup
 exports.signup = async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { userName, email, password, role } = req.body;
 
-  if (!username || !email || !password) {
+  if (!userName || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -25,7 +25,7 @@ exports.signup = async (req, res) => {
 
     // Create new user
     const newUser = new User({
-      username,
+      userName,
       email,
       password: hashedPassword,
       role: role || 'user', // Default to 'user' if role is not provided
